@@ -2,7 +2,11 @@ def print_cell_line(cell_size, is_black):
     BLACK_SYMBOL = '*'
     WHITE_SYMBOL = '-'
     for _ in range(cell_size):
-        print(BLACK_SYMBOL if is_black else WHITE_SYMBOL, end=' ')
+        print(
+            BLACK_SYMBOL if is_black
+            else WHITE_SYMBOL,
+            end=' '
+        )
 
 
 def is_black_cell(row, column):
