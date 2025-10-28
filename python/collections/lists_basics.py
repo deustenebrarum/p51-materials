@@ -2,15 +2,18 @@ def create_list():
     '''Создание списка'''
     return [1, 2, 3, 4, 5]
 
+
 # 2. Добавление элемента в конец
 def append_element(lst, item):
     lst.append(item)
     return lst
 
+
 # 3. Вставка элемента по индексу
 def insert_element(lst, index, item):
     lst.insert(index, item)
     return lst
+
 
 # 4. Удаление элемента по значению
 def remove_element(lst, item):
@@ -18,44 +21,54 @@ def remove_element(lst, item):
         lst.remove(item)
     return lst
 
+
 # 5. Удаление элемента по индексу
 def pop_element(lst, index=-1):
     return lst.pop(index)
+
 
 # 6. Получение длины списка
 def get_length(lst):
     return len(lst)
 
+
 # 7. Проверка наличия элемента
 def contains_element(lst, item):
     return item in lst
+
 
 # 8. Получение индекса элемента
 def get_index(lst, item):
     return lst.index(item) if item in lst else -1
 
+
 # 9. Подсчёт количества вхождений
 def count_element(lst, item):
     return lst.count(item)
+
 
 # 10. Сортировка списка
 def sort_list(lst: list[int]):
     lst.sort(key=lambda x: -x)
     return lst
 
+
 # 11. Разворот списка
 def reverse_list(lst):
     lst.reverse()
     return lst
 
+
 # 12. Копирование списка
 def copy_list(lst):
     return lst.copy()
+
 
 # 13. Объединение списков
 def extend_list(lst1, lst2):
     lst1.extend(lst2)
     return lst1
+
 
 # 14. Срез списка
 def slice_list(lst, start=0, end=None):

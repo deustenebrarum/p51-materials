@@ -22,6 +22,7 @@ for i, item in enumerate(a):
 
 print(sum_)
 
+
 def max_length_item(strings):
     '''Пример решения задач из домашнего задания'''
     max_string = strings[0]
@@ -29,4 +30,3 @@ def max_length_item(strings):
         if len(item) > len(max_string):
             max_string = item
     return max_string
-
