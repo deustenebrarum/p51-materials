@@ -27,6 +27,9 @@ class Passport:
             return False
         return True
 
+    def is_valid(self):
+        return self
+
 
 class Visa:
     def __init__(self, number, date_of_issue,
@@ -90,8 +93,7 @@ foreign_passport = ForeignPassport(
 )
 
 passports = [
-    a,
-    foreign_passport.passport
+    a, foreign_passport.passport
 ]
 
 for passport in passports:
