@@ -1,18 +1,20 @@
 import pygame
 
+from constants import Color
 
-def draw_text(gameDisplay: pygame.Surface, message: str,
-              color: pygame.Color,
-              x: int, y: int, size: int, center=True):
+
+def draw_text(surface: pygame.Surface, message: str,
+              color: tuple[int, int, int],
+              x: float, y: float, size: int, center=True):
     '''Function to draw text on the screen'''
     font = pygame.font.SysFont("Calibri", size)
     screen_text = font.render(message, True, color)
     if center:
         rect = screen_text.get_rect()
-        rect.center = (x, y)
+        rect.center = (int(x), int(y))
     else:
         rect = pygame.Rect(x, y, size, size)
-    gameDisplay.blit(screen_text, rect)
+    surface.blit(screen_text, rect)
 
 
 def is_colliding(centerX: int, centerY: int,

@@ -8,7 +8,7 @@ from constants import Color, Display
 from game_object import GameObject
 
 if TYPE_CHECKING:
-    from Asteroids import Game
+    from game import Game
 
 
 class AsteroidType(Enum):
@@ -68,7 +68,7 @@ class Asteroid(GameObject):
                 next_v = self.vertices[v + 1]
             this_v = self.vertices[v]
             pygame.draw.line(
-                self.game.gameDisplay, Color.white,
+                self.game.display, Color.white,
                 (self.x + this_v[0] * math.cos(this_v[1] * math.pi / 180),
                  self.y + this_v[0] * math.sin(this_v[1] * math.pi / 180)),
                 (self.x + next_v[0] * math.cos(next_v[1] * math.pi / 180),
