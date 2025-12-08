@@ -34,3 +34,12 @@ DELETE FROM animals WHERE name ILIKE '%трын%';
 UPDATE animals
 SET weight_kg = weight_kg + 1
 WHERE neutered = true;
+
+SELECT 
+    (CASE WHEN (weight_kg > 12.5)
+        THEN 'big'
+        ELSE 'small'
+    END) "size", 
+    COUNT(weight_kg) count
+FROM animals GROUP BY "size";  
+
