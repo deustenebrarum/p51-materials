@@ -1,20 +1,28 @@
 from typing import List
 from typing import Optional
-from sqlalchemy import ForeignKey, create_engine, delete, select, func
+from sqlalchemy import create_engine, ForeignKey, delete, select, func
+from sqlalchemy.ext.asyncio import create_async_engine, async_sessionmaker
 from sqlalchemy import String
 from sqlalchemy.orm import DeclarativeBase
 from sqlalchemy.orm import Mapped
 from sqlalchemy.orm import mapped_column
 from sqlalchemy.orm import relationship
-from sqlalchemy.orm import Session
+from sqlalchemy.orm import Session, sessionmaker
 
 
-engine = create_engine("postgresql://postgres:admin@localhost/p51_users_test")
+engine = create_engine(
+    "postgresql://postgres:admin@localhost/p51_users_test")
+
+create_session = sessionmaker(bind=engine)
 
 
 def main():
-    with Session(engine) as session:
-        # jim = session.get(User, 2)
+    with create_session() as session:
+        print(delete(User))
+        # session.execute()
+        
+        session.commit()
+        
         # sandy = session.get(User, 4)
         # session.add_all([
         #     Address(email_address=f"jim-{i}@example.com", user=jim)
@@ -25,26 +33,31 @@ def main():
         #     for i in range(3)
         # ])
         # session.commit()
-
+        Address().user
         # for user in session.scalars(
         #         select(func.count(User.name)).where(User.name == "jim")):
         #     print(user)
-        session.delete(delete(User).where(User.name == "jim"))
-        session.commit()
-        for res in session.scalars(
-                select(User).where(User.name == "jim")):
-            print(res)
+        # session.commit()
+        # for res in session.scalars(
+        #         select(User).where(User.name == "jim")):
+        #     print(res)
 
 
 class Base(DeclarativeBase):
-    pass
+    id: Mapped[int] = mapped_column(primary_key=True)
 
 
 class User(Base):
-    __tablename__ = "user_account"
-    id: Mapped[int] = mapped_column(primary_key=True)
-    name: Mapped[str] = mapped_column(String(30), unique=True)
-    fullname: Mapped[Optional[str]]
+    '''
+    CREATE TABLE users (
+        id INTEGER PRIMARY KEY,
+        name VARCHAR(255) UNIQUE NOT NULL,
+        fullname VARCHAR(255),
+    )
+    '''
+    __tablename__ = "users"
+    name: Mapped[str] = mapped_column(String(255), unique=True)
+    fullname: Mapped[Optional[str]] = mapped_column(String(255))
     addresses: Mapped[List["Address"]] = relationship(
         back_populates="user", cascade="all, delete-orphan"
     )
@@ -54,10 +67,10 @@ class User(Base):
 
 
 class Address(Base):
-    __tablename__ = "address"
-    id: Mapped[int] = mapped_column(primary_key=True)
+    __tablename__ = "addresses"
     email_address: Mapped[str]
-    user_id: Mapped[int] = mapped_column(ForeignKey("user_account.id"))
+    # user_id INTEGER REFERENCES users(id)
+    user_id: Mapped[int] = mapped_column(ForeignKey("users.id"))
     user: Mapped["User"] = relationship(back_populates="addresses")
 
     def __repr__(self) -> str:
