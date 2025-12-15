@@ -18,11 +18,12 @@ create_session = sessionmaker(bind=engine)
 
 def main():
     with create_session() as session:
+        Base.metadata.create_all(engine)
         print(delete(User))
         # session.execute()
-        
+
         session.commit()
-        
+
         # sandy = session.get(User, 4)
         # session.add_all([
         #     Address(email_address=f"jim-{i}@example.com", user=jim)
@@ -50,7 +51,7 @@ class Base(DeclarativeBase):
 class User(Base):
     '''
     CREATE TABLE users (
-        id INTEGER PRIMARY KEY,
+        id SERIAL PRIMARY KEY,
         name VARCHAR(255) UNIQUE NOT NULL,
         fullname VARCHAR(255),
     )
