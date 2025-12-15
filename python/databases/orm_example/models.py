@@ -1,4 +1,3 @@
-from dataclasses import dataclass
 from typing import List, Optional
 from sqlalchemy import ForeignKey, String
 from sqlalchemy.orm import (
@@ -13,6 +12,7 @@ class Base(DeclarativeBase):
 class Product(Base):
     __tablename__ = "products"
     name: Mapped[str] = mapped_column(String(255), nullable=False)
+    # description: Mapped[str] = mapped_column(String(255), nullable=False)
     price: Mapped[float] = mapped_column(nullable=False)
     quantity: Mapped[int] = mapped_column(nullable=False)
     category_id: Mapped[Optional[int]] = mapped_column(
