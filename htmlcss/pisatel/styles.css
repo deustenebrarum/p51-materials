@@ -1,0 +1,17 @@
+body {
+    background-color: rgb(30, 30 , 30);
+    color: hsl(40, 70%, 97%);
+}
+
+a {
+    color: hsl(300, 70%, 70%);
+}
+
+.main-text {
+    text-align: center;
+}
+
+.main-text strong {
+    color: rgb(0, 0, 100);
+    font-weight: bold;
+}
