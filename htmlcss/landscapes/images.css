@@ -43,3 +43,9 @@ body {
         display: block;
     }
 }
+
+@media print {
+    .images {
+        display: none;
+    }
+}
