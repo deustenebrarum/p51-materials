@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+      }
+
+      .main {
+        min-height: 100vh;
+      }
+
+      .flex-container {
+        padding: 50px;
+        /* делает flexbox расположение внутренних элементов */
+        display: flex;
+        height: 100vh;
+        /* создаёт отступы между элементами */
+        gap: 10px;
+        /* flex-direction: row;
+        flex-wrap: wrap; */
+        /* то же самое, что сверху */
+        flex-flow: row wrap;
+        /* располагает элементы по центру вдоль row */
+        justify-content: center;
+        /* располагает элементы по центру вдоль column */
+        align-content: center;
+        /* располагает элементы относительно своей линии по центру вдоль row
+        для этого нужны элементы разных размеров */
+        justify-items: flex-start;
+        /* располагает элементы относительно своей линии по центру вдоль column */
+        align-items: center;
+      }
+
+      .flex-container .flex-item {
+        /* flex-grow: 0; если не равно 0, элементы могут увеличиваться,
+          если на разных элементах будет разное значение, то элементы
+          будут увеличиваться по отношению друг к другу
+          в соответствии с этими значениями
+        flex-shrink: 0; если не равно 0, элементы могут уменьшаться,
+          если на разных элементах будет разное значение, то элементы
+          будут меньше по отношению друг к другу, работает как flex-grow
+          только наоборот
+        flex-basis: 200px; базовый размер, от которого растут элементы */
+        /* то же, что и сверху по порядку */
+        flex: 0 0 200px;
+        height: 100px;
+        background: #9c9c9c;
+        text-align: center;
+        font: normal 24px sans-serif;
+      }
+    </style>
+  </head>
+  <body>
+    <main class="main">
+      <section class="flex-container">
+        <div class="flex-item">Это текст в блоке</div>
+        <div class="flex-item">Это текст в блоке</div>
+        <div class="flex-item">Это текст в блоке</div>
+        <div class="flex-item">Это текст в блоке</div>
+        <div class="flex-item">Это текст в блоке</div>
+        <div class="flex-item">Это текст в блоке</div>
+        <div class="flex-item">Это текст в блоке</div>
+        <div class="flex-item">Это текст в блоке</div>
+        <div class="flex-item">Это текст в блоке</div>
+        <div class="flex-item">Это текст в блоке</div>
+        <div class="flex-item">Это текст в блоке</div>
+        <div class="flex-item">Это текст в блоке</div>
+        <div class="flex-item">Это текст в блоке</div>
+        <div class="flex-item">Это текст в блоке</div>
+      </section>
+    </main>
+  </body>
+</html>
