@@ -1,0 +1,9 @@
+:root {
+  --max-page-width: 920px;
+  font:
+}
+
+main {
+  margin: 0 auto;
+  max-width: var(--max-page-width);
+}
