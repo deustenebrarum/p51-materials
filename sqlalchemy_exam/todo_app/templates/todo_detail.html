@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Todo Detail</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .todo-info { border: 1px solid #ccc; padding: 15px; margin-bottom: 15px; }
+        .linked-todo { border: 1px dashed #999; padding: 10px; margin: 5px 0; background-color: #f9f9f9; }
+        .section { margin-bottom: 20px; }
+        .form-group { margin-bottom: 10px; }
+        select, input[type="text"] { padding: 5px; }
+        .auth-link { float: right; }
+    </style>
+</head>
+<body>
+    <h1>Todo Details</h1>
+    
+    {% if current_user %}
+        <a href="{{ url_for('logout') }}" class="auth-link">Logout ({{ current_user.username }})</a>
+    {% else %}
+        <a href="{{ url_for('auth') }}" class="auth-link">Login/Register</a>
+    {% endif %}
+    
+    <a href="{{ url_for('index') }}">Back to Todo List</a>
+    
+    <div class="todo-info">
+        <h2>{{ todo.title }}</h2>
+        <p>Created: {{ todo.created_at.strftime('%Y-%m-%d %H:%M') }}</p>
+    </div>
+    
+    <div class="section">
+        <h3>Add Tag</h3>
+        <form method="POST">
+            <select name="tag_id">
+                <option value="">No tag</option>
+                {% for tag in all_tags %}
+                    <option value="{{ tag.id }}" {% if todo.tag_id == tag.id %}selected{% endif %}>{{ tag.name }}</option>
+                {% endfor %}
+            </select>
+            <button type="submit">Update Tag</button>
+        </form>
+    </div>
+    
+    <div class="section">
+        <h3>Linked Todos</h3>
+        {% for linked_todo in linked_todos %}
+            <div class="linked-todo">
+                <a href="{{ url_for('todo_detail', todo_id=linked_todo.id) }}">{{ linked_todo.title }}</a>
+                <small>({{ linked_todo.created_at.strftime('%Y-%m-%d %H:%M') }})</small>
+            </div>
+        {% empty %}
+            <p>No linked todos yet.</p>
+        {% endfor %}
+        
+        <h4>Link to Another Todo</h4>
+        <form method="POST">
+            <select name="link_todo_id">
+                {% for other_todo in all_todos %}
+                    {% if other_todo.id != todo.id %}
+                        <option value="{{ other_todo.id }}">{{ other_todo.title }}</option>
+                    {% endif %}
+                {% endfor %}
+            </select>
+            <button type="submit">Link Todo</button>
+        </form>
+    </div>
+</body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Todo List</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .todo { border: 1px solid #ccc; padding: 10px; margin-bottom: 10px; }
+        .todo-meta { color: #666; font-size: 0.9em; }
+        .auth-link { float: right; }
+        .new-todo-form { margin-bottom: 20px; }
+        .tag-filter { margin-bottom: 15px; }
+        .tag-item { display: inline-block; margin: 5px; padding: 5px 10px; background-color: #e0e0e0; border-radius: 3px; }
+    </style>
+</head>
+<body>
+    <h1>Todo List</h1>
+    
+    {% if current_user %}
+        <a href="{{ url_for('logout') }}" class="auth-link">Logout ({{ current_user.username }})</a>
+    {% else %}
+        <a href="{{ url_for('auth') }}" class="auth-link">Login/Register</a>
+    {% endif %}
+    
+    <div class="new-todo-form">
+        <form method="POST" action="{{ url_for('new_todo') }}">
+            <input type="text" name="title" placeholder="New todo..." required>
+            <button type="submit">Add Todo</button>
+        </form>
+    </div>
+    
+    <div class="tag-filter">
+        <a href="{{ url_for('index') }}" class="tag-item {% if not selected_tag_id %}selected{% endif %}">All</a>
+        {% for tag in tags %}
+            <a href="{{ url_for('tag_todos', tag_id=tag.id) }}" class="tag-item {% if selected_tag_id == tag.id %}selected{% endif %}">{{ tag.name }}</a>
+        {% endfor %}
+        <a href="{{ url_for('tags') }}">Manage Tags</a>
+    </div>
+    
+    {% for todo in todos %}
+        <div class="todo">
+            <h3>{{ todo.title }}</h3>
+            <div class="todo-meta">
+                Created: {{ todo.created_at.strftime('%Y-%m-%d %H:%M') }}
+                {% if todo.tag %}
+                    | Tag: <span style="background-color: #e0e0e0; padding: 2px 5px;">{{ todo.tag.name }}</span>
+                {% endif %}
+                | <a href="{{ url_for('todo_detail', todo_id=todo.id) }}">View/Edit</a>
+            </div>
+        </div>
+    {% empty %}
+        <p>No todos yet.</p>
+    {% endfor %}
+</body>
+</html>

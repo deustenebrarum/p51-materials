@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script>
+      document.addEventListener("DOMContentLoaded", async () => {
+        "use strict";
+        const outputElement = document.querySelector(".game-output");
+        // Сообщить условия игры
+
+        function setOutput(text) {
+          outputElement.innerHTML = `<strong>${text}</strong>`;
+        }
+
+        const numberToGuess = 1 + Math.floor(Math.random() * 10);
+
+        const guessForm = document.querySelector(".guess-form");
+        const guessNumberElement = document.querySelector(".guess-number");
+        const guessButton = document.querySelector(".submit-guess");
+
+        guessForm.addEventListener("submit", (event) => {
+          event.preventDefault();
+
+          const guess = +guessNumberElement.value;
+
+          if (numberToGuess > guess) {
+            // то сообщи, что загадaнное больше
+            setOutput("Загаданное больше");
+            // если введённое число больше загаданного
+          } else if (numberToGuess < guess) {
+            // то сообщи, что загаднное меньше
+            setOutput("Загаданное меньше<br>");
+          } else {
+            setOutput("Вы выиграли<br>");
+            guessButton.disabled = true;
+            guessNumberElement.disabled = true;
+          }
+        });
+      });
+    </script>
+  </head>
+  <body>
+    <form class="guess-form">
+      <input type="number" name="" id="" class="guess-number" />
+      <button type="submit" class="submit-guess">Попытаться</button>
+    </form>
+    <p class="game-output"></p>
+  </body>
+</html>

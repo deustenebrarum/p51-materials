@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Manage Tags</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .tag-item { display: inline-block; margin: 5px; padding: 5px 10px; background-color: #e0e0e0; border-radius: 3px; }
+        .auth-link { float: right; }
+        .new-tag-form { margin-bottom: 20px; }
+    </style>
+</head>
+<body>
+    <h1>Manage Tags</h1>
+    
+    {% if current_user %}
+        <a href="{{ url_for('logout') }}" class="auth-link">Logout ({{ current_user.username }})</a>
+    {% else %}
+        <a href="{{ url_for('auth') }}" class="auth-link">Login/Register</a>
+    {% endif %}
+    
+    <a href="{{ url_for('index') }}">Back to Todo List</a>
+    
+    <div class="new-tag-form">
+        <form method="POST" action="{{ url_for('new_tag') }}">
+            <input type="text" name="name" placeholder="New tag name..." required>
+            <button type="submit">Add Tag</button>
+        </form>
+    </div>
+    
+    <h3>Existing Tags</h3>
+    {% for tag in tags %}
+        <a href="{{ url_for('tag_todos', tag_id=tag.id) }}" class="tag-item">{{ tag.name }}</a>
+    {% empty %}
+        <p>No tags yet.</p>
+    {% endfor %}
+</body>
+</html>
