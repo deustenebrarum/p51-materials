@@ -39,7 +39,7 @@ function getAsDays(day, month, year) {
   let daysCount = 365 * year;
 
   daysCount += countLeapYearsBy(year);
-  
+
   for (let i = 1; i < month; i++) {
     daysCount += getDaysFromMonthNumber(i, year) ?? 0;
   }
