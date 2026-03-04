@@ -1,4 +1,5 @@
-"use strict";
+adad();
+("use strict");
 
 const width = Number(5);
 const height = Number(7.1);
