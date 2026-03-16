@@ -1,0 +1,36 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+ul,
+ol {
+  list-style-type: none;
+}
+.content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #0a0a09;
+}
+
+.squares-list {
+  display: grid;
+  grid-template-columns: repeat(4, 40vh);
+  grid-template-rows: repeat(2, 40vh);
+  justify-content: center;
+  align-content: center;
+  height: 80%;
+  width: 80%;
+  gap: 20px;
+}
+
+.square {
+  background-color: #ffffff09;
+  /* transition: all 10s; */
+  border-radius: 20px;
+}
+
+.square:nth-of-type(even) {
+  animation-delay: 1s;
+}
