@@ -43,17 +43,19 @@ function newTask(title, description) {
 }
 
 function Task(title, description) {
-  // const task = Object.assign({}, taskProto);
+  // const this = Object.assign({}, taskProto);
 
   this.number = taskProto._lastNumber;
   taskProto._lastNumber++;
   this.title = title;
   this.description = description;
 
-  // return task;
+  // return this;
 }
 Object.setPrototypeOf(Task.prototype, taskProto);
 
+const task1 = new Task();
+console.log(task1);
 const task2 = {};
 task2.__proto__ = taskProto;
 
