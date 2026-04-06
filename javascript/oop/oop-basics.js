@@ -20,6 +20,22 @@ class Bird extends Animal {
   }
 }
 
-const animal = new Bird("Kesha", 4);
+const animal = new Animal("Kesha", 4);
 animal.run();
 animal.fly();
+
+class Person {
+  constructor(name) {
+    this.name = name;
+  }
+
+  run() {}
+}
+
+/**
+ * @param {Animal} animal
+ */
+function test(animal) {
+  for (let i = 0; i < 3; i++) animal.run();
+  animal.name = "Бешеный " + animal.name;
+}
