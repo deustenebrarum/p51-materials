@@ -3,7 +3,6 @@ export class ColorSwitch {
     this._element = element;
     this._colors = colors;
     this.setColor(initialColorIndex);
-    this.addClickHandler();
   }
 
   reset() {

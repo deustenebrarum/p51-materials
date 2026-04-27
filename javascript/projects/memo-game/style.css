@@ -3,11 +3,41 @@
   padding: 0;
 }
 
+.game {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  align-items: center;
+}
+
+.tries-counter {
+  font-size: 48px;
+  text-align: center;
+}
+
 .cards {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(5, 1fr);
   gap: 16px;
   width: min-content;
   margin: 0 auto;
-  margin-top: 20px;
+  list-style-type: none;
+}
+
+.cards-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100vh;
+}
+
+.game-over {
+  text-align: center;
+  font-family: "Courier New", Courier, monospace;
+  font-weight: bold;
+  font-size: 48px;
+}
+
+.CardElement {
+  width: 140px;
+  height: 200px;
 }
