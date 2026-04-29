@@ -41,3 +41,14 @@
   width: 140px;
   height: 200px;
 }
+
+.hidden {
+  display: none;
+}
+
+.restart-button {
+  background-color: #000;
+  font-size: 36px;
+  padding: 12px;
+  color: #fff;
+}
