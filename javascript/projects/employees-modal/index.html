@@ -1,204 +1,212 @@
 <!doctype html>
 <html lang="ru">
-  <head>
-    <meta charset="UTF-8" />
-    <title>Сотрудники</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <style>
-      :root {
-        --bg: #f5f7fa;
-        --card: #ffffff;
-        --border: #e2e6ea;
-        --text: #2c3e50;
-        --muted: #6c757d;
-        --accent: #3b82f6;
-      }
 
-      * {
-        box-sizing: border-box;
-        margin: 0;
-        padding: 0;
-        font-family:
-          system-ui,
-          -apple-system,
-          Segoe UI,
-          Roboto,
-          sans-serif;
-      }
+<head>
+  <meta charset="UTF-8" />
+  <title>Сотрудники</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script defer src="script.js"></script>
+  <style>
+    :root {
+      --bg: #f5f7fa;
+      --card: #ffffff;
+      --border: #e2e6ea;
+      --text: #2c3e50;
+      --muted: #6c757d;
+      --accent: #3b82f6;
+    }
 
-      body {
-        background: var(--bg);
-        color: var(--text);
-        padding: 24px;
-      }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family:
+        system-ui,
+        -apple-system,
+        Segoe UI,
+        Roboto,
+        sans-serif;
+    }
 
-      header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        margin-bottom: 24px;
-      }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      padding: 24px;
+    }
 
-      h1 {
-        font-size: 24px;
-        font-weight: 600;
-      }
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 24px;
+    }
 
-      .btn {
-        padding: 10px 16px;
-        background: var(--accent);
-        color: #fff;
-        border-radius: 8px;
-        font-size: 14px;
-        border: none;
-        cursor: pointer;
-        transition: background 0.2s ease;
-      }
+    h1 {
+      font-size: 24px;
+      font-weight: 600;
+    }
 
-      .btn:hover {
-        background: #2563eb;
-      }
+    .btn {
+      padding: 10px 16px;
+      background: var(--accent);
+      color: #fff;
+      border-radius: 8px;
+      font-size: 14px;
+      border: none;
+      cursor: pointer;
+      transition: background 0.2s ease;
+    }
 
-      .grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-        gap: 16px;
-      }
+    .btn:hover {
+      background: #2563eb;
+    }
 
-      .card {
-        background: var(--card);
-        border: 1px solid var(--border);
-        border-radius: 12px;
-        padding: 16px;
-        transition:
-          transform 0.2s ease,
-          box-shadow 0.2s ease;
-        cursor: pointer;
-      }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 16px;
+    }
 
-      .card:hover {
-        transform: translateY(-6px);
-        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
-      }
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 16px;
+      transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+      cursor: pointer;
+    }
 
-      .name {
-        font-weight: 600;
-        margin-bottom: 6px;
-      }
+    .card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+    }
 
-      .role {
-        font-size: 14px;
-        color: var(--muted);
-        margin-bottom: 8px;
-      }
+    .name {
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
 
-      .contact {
-        font-size: 13px;
-        color: var(--muted);
-      }
+    .role {
+      font-size: 14px;
+      color: var(--muted);
+      margin-bottom: 8px;
+    }
 
-      /* Modal */
+    .contact {
+      font-size: 13px;
+      color: var(--muted);
+    }
 
-      .modal {
-        position: fixed;
-        inset: 0;
-        background: rgba(0, 0, 0, 0.4);
-        display: none;
-        align-items: center;
-        justify-content: center;
-      }
+    /* Modal */
 
-      .modal.active {
-        display: flex;
-      }
+    .modal {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.4);
+      display: none;
+      align-items: center;
+      justify-content: center;
+    }
 
-      .modal-content {
-        background: #fff;
-        border-radius: 12px;
-        padding: 20px;
-        width: 100%;
-        max-width: 400px;
-        position: relative;
-      }
+    .modal.active {
+      display: flex;
+    }
 
-      .modal h2 {
-        margin-bottom: 16px;
-        font-size: 18px;
-      }
+    .modal-content {
+      background: #fff;
+      border-radius: 12px;
+      padding: 20px;
+      width: 100%;
+      max-width: 400px;
+      position: relative;
+    }
 
-      .close {
-        position: absolute;
-        top: 10px;
-        right: 12px;
-        font-size: 18px;
-        background: none;
-        border: none;
-        cursor: pointer;
-        color: #999;
-      }
+    .modal h2 {
+      margin-bottom: 16px;
+      font-size: 18px;
+    }
 
-      .close:hover {
-        color: #000;
-      }
+    .close {
+      position: absolute;
+      top: 10px;
+      right: 12px;
+      font-size: 18px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: #999;
+    }
 
-      form {
-        display: flex;
-        flex-direction: column;
-        gap: 12px;
-      }
+    .close:hover {
+      color: #000;
+    }
 
-      input {
-        padding: 10px;
-        border-radius: 8px;
-        border: 1px solid var(--border);
-        font-size: 14px;
-      }
-    </style>
-  </head>
-  <body>
-    <header>
-      <h1>Сотрудники</h1>
-      <button class="btn" data-open-modal>Добавить сотрудника</button>
-    </header>
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
 
-    <div class="grid">
-      <div class="card" data-employee>
-        <div class="name">Иван Петров</div>
-        <div class="role">Frontend разработчик</div>
-        <div class="contact">ivan@example.com</div>
-      </div>
+    input {
+      padding: 10px;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      font-size: 14px;
+    }
+  </style>
+</head>
 
-      <div class="card" data-employee>
-        <div class="name">Мария Смирнова</div>
-        <div class="role">Дизайнер</div>
-        <div class="contact">maria@example.com</div>
-      </div>
+<body>
+  <header>
+    <h1>Сотрудники</h1>
+    <button class="btn" data-open-modal>Добавить сотрудника</button>
+  </header>
 
-      <div class="card" data-employee>
-        <div class="name">Алексей Иванов</div>
-        <div class="role">Backend разработчик</div>
-        <div class="contact">alex@example.com</div>
-      </div>
-
-      <div class="card" data-employee>
-        <div class="name">Ольга Кузнецова</div>
-        <div class="role">HR</div>
-        <div class="contact">olga@example.com</div>
-      </div>
+  <div class="grid employees-list">
+    <div class="card" data-employee>
+      <div class="name">Иван Петров</div>
+      <div class="role">Frontend разработчик</div>
+      <div class="contact">ivan@example.com</div>
     </div>
 
-    <!-- Modal -->
-    <div class="modal" id="modal">
-      <div class="modal-content">
-        <button class="close" data-close-modal>&times;</button>
-        <h2>Новый сотрудник</h2>
-        <form novalidate>
-          <input type="text" placeholder="Имя" required />
-          <input type="text" placeholder="Должность" required />
-          <input type="email" placeholder="Email" required />
-          <button type="submit" class="btn">Сохранить</button>
-        </form>
-      </div>
+    <div class="card" data-employee>
+      <div class="name">Мария Смирнова</div>
+      <div class="role">Дизайнер</div>
+      <div class="contact">maria@example.com</div>
     </div>
-  </body>
+
+    <div class="card" data-employee>
+      <div class="name">Алексей Иванов</div>
+      <div class="role">Backend разработчик</div>
+      <div class="contact">alex@example.com</div>
+    </div>
+
+    <div class="card" data-employee>
+      <div class="name">Ольга Кузнецова</div>
+      <div class="role">HR</div>
+      <div class="contact">olga@example.com</div>
+    </div>
+  </div>
+
+  <!-- Modal -->
+  <div class="modal" id="modal">
+    <div class="modal-content">
+      <button class="close" data-close-modal>&times;</button>
+      <h2>Новый сотрудник</h2>
+      <form novalidate>
+        <input type="text" placeholder="Имя" required />
+        <input type="text" placeholder="Должность" required />
+        <input type="email" placeholder="Email" required />
+        <button type="submit" class="btn">Сохранить</button>
+      </form>
+    </div>
+  </div>
+
+  <script>
+
+  </script>
+</body>
+
 </html>
